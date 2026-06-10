@@ -36,10 +36,9 @@ const handler = NextAuth({
       if (user) token.id = user.id
       return token
     },
-async session({ session, token }) {
-  if (session.user) (session.user as any).id = token.id as string
-  return session
-},
+    async session({ session, token }) {
+      return session
+    },
   },
 })
 
