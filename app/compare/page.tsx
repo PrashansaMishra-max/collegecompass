@@ -38,7 +38,7 @@ function ComparePage() {
   async function fetchAllColleges() {
     const res = await fetch('/api/colleges?page=1')
     const data = await res.json()
-    setAllColleges(data.colleges)
+    setAllColleges(data.colleges ?? [])
   }
 
   async function fetchCompare(ids: string[]) {
@@ -46,7 +46,7 @@ function ComparePage() {
     setLoading(true)
     const res = await fetch(`/api/colleges/compare?ids=${ids.join(',')}`)
     const data = await res.json()
-    setColleges(data)
+    setColleges(Array.isArray(data) ? data : [])
     setLoading(false)
   }
 
